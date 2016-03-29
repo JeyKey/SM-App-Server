@@ -1,0 +1,42 @@
+<div class="container-fluid"><div class="row"><div class="col-md-12"><div class="row">
+
+	<slick autoplay="true" autoplaySpeed="800" fade="false" speed="1500" init-onload=true data="getdata" class="offer">
+
+		<div ng-repeat="Offer in getdata" class="image" style="background-image: url({{Offer.image}})">
+			<div class="semiopacity"></div>
+				<div class="col-md-4 col-md-offset-4 mtop60">
+					<span class="label label-{{Offer.category_id}}">{{Offer.category}}</span>
+					<h1>{{Offer.name}}</h1>
+			<hr><p>{{Offer.text}}</p>
+					<div class="price"><small>{{Offer.old_price}} тг.</small><br> {{Offer.price}} <sup>тг.</sup></div>
+					<ngcart-addtocart id="{{Offer.id}}" name="{{Offer.name}}" cat="{{Article.category_id}}" price="{{Offer.price}}"  quantity="1" quantity-max="10">Заказать</ngcart-addtocart>
+
+			</div>
+		</div>
+
+	</slick>
+
+
+
+</div></div></div></div>
+
+<script type="text/ng-template" id="template/ngCart/addtocart.html"><div ng-hide="attrs.id">
+    <a class="btn btn-default" ng-disabled="true" ng-transclude></a>
+
+</div>
+<div ng-show="attrs.id">
+    <div>
+        <span ng-show="quantityMax">
+            <select name="quantity" id="quantity" ng-model="q"
+                    ng-options=" v for v in qtyOpt"></select>
+        </span>
+        <a class="btn btn btn-default"
+           ng-click="ngCart.addItem(id, name, cat, price, q, data)"
+           ng-transclude></a>
+    </div>
+    <div ng-show="inCart()" class="alert alert-success">
+        Это блюдо уже в вашей корзине. <a ng-click="ngCart.removeItemById(id)" style="cursor: pointer;">Удалить</a>
+				</div>
+    
+</div>
+</script>
