@@ -14,7 +14,7 @@
 
   <div ng-if="service=='paypal'">
 
-      <form action="http://localhost/api/v1/checkout" method="post" ng-show="ngCart.getTotalItems()">
+      <form action="http://192.168.0.101/api/v1/checkout" method="post" ng-show="ngCart.getTotalItems()">
         <input type="hidden" name="date" value="{{ngCart.Data | date:'dd MMM yyyy  | HH:mm' : timezone:'+06'}}">
         <input type="hidden" name="getTax" value="{{ ngCart.getTax()}}">
         <input type="hidden" name="getTotalItems" value="{{ ngCart.getTotalItems()}}">
